@@ -34,10 +34,19 @@ class player(FirstPersonController):
         )
 
 
-class Warp():
-     def __init__(self):
+class Warp(Entity):                                     #워프 (오른손 법칙 막는거)
+     def __init__(self,i,j):
           super().__init__(
-               
+               warp = Entity(
+                    model = 'cube',
+                    #color = color.brown,
+                    scale = (5, 10, 5),
+                    position = (i * 5, 1, j * 5),
+                    collider = 'box',
+                    texture = 'brick2'
+
+
+               )
           )
 
 
@@ -82,7 +91,7 @@ Map = [
     [11,__,__,14,15,16,__,__,19,20,21,23,24,25,26,__,28,29,30],
     [11,12,__,14,15,16,17,__,19,20,__,__,__,__,__,__,28,29,30],
     [11,12,__,14,15,16,17,__,19,20,__,23,'d',25,26,__,__,__,30],
-    [11,__,__,__,__,__,__,__,__,__,__,23,24,25,26,27,28,__,30],
+    [11,__,__,__,__,__,__,__,__,__,__,23,24,25,26,27,28,'w',30],
     [11,12,13,14,15,16,17,18,19,20,21,23,24,25,26,27,28,'p',30]
 ]
 
@@ -112,7 +121,9 @@ for i in range(len(Map)):
                     if Map[i][j] == 'e':
                           exitdoor = exit(i,j)
                           continue
-
+                    if Map[i][j] == 'w':
+                         warp = Warp(i,j)
+                         continue
 
 
                     wall = Entity(
