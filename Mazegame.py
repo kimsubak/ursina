@@ -33,6 +33,15 @@ class player(FirstPersonController):
                 
         )
 
+
+class Warp():
+     def __init__(self):
+          super().__init__(
+               
+          )
+
+
+
 class exit(Entity):
     def __init__(self,i,j):
         super().__init__(
